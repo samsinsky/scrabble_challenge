@@ -1,0 +1,201 @@
+# ---------------------------
+# Created for educational purposes; author is not liable for results that may
+# stem from misuse, unintended use, or modification by other users.
+# (c) Karl T. Muth 2025
+# ---------------------------
+
+title: "Muth test prototype markup; completed Scrabble board, with legible board and tile notations"
+
+board:
+  geometry:
+    grid_size: "15 x 15"
+    total_squares: 225
+    square_dimensions: "uniform, equal, perfectly aligned"
+    perspective: "strict orthographic top-down, no tilt"
+  geography:
+    # Explicit Scrabble board layout by row (R1–R15).
+    # Colors: R=Red (Triple Word Score), P=Pink (Double Word Score),
+    # DB=Dark Blue (Triple Letter Score), LB=Light Blue (Double Letter Score), B=Beige (normal).
+    # Each special square must legibly bear its correct notation.
+    rows:
+      R1:  [R: "TRIPLE WORD SCORE", B, B, LB: "DOUBLE LETTER SCORE", B, B, B, R: "TRIPLE WORD SCORE", B, B, B, LB: "DOUBLE LETTER SCORE", B, B, R: "TRIPLE WORD SCORE"]
+      R2:  [B, P: "DOUBLE WORD SCORE", B, B, B, DB: "TRIPLE LETTER SCORE", B, B, B, DB: "TRIPLE LETTER SCORE", B, B, B, P: "DOUBLE WORD SCORE", B]
+      R3:  [B, B, P: "DOUBLE WORD SCORE", B, B, B, LB: "DOUBLE LETTER SCORE", B, LB: "DOUBLE LETTER SCORE", B, B, B, P: "DOUBLE WORD SCORE", B, B]
+      R4:  [LB: "DOUBLE LETTER SCORE", B, B, P: "DOUBLE WORD SCORE", B, B, B, LB: "DOUBLE LETTER SCORE", B, B, B, P: "DOUBLE WORD SCORE", B, B, LB: "DOUBLE LETTER SCORE"]
+      R5:  [B, B, B, B, P: "DOUBLE WORD SCORE", B, B, B, B, B, P: "DOUBLE WORD SCORE", B, B, B, B]
+      R6:  [B, DB: "TRIPLE LETTER SCORE", B, B, B, DB: "TRIPLE LETTER SCORE", B, B, B, DB: "TRIPLE LETTER SCORE", B, B, B, DB: "TRIPLE LETTER SCORE", B]
+      R7:  [B, B, LB: "DOUBLE LETTER SCORE", B, B, B, LB: "DOUBLE LETTER SCORE", B, LB: "DOUBLE LETTER SCORE", B, B, B, LB: "DOUBLE LETTER SCORE", B, B]
+      R8:  [R: "TRIPLE WORD SCORE", B, B, LB: "DOUBLE LETTER SCORE", B, B, B, P*: "DOUBLE WORD SCORE (center star)", B, B, B, LB: "DOUBLE LETTER SCORE", B, B, R: "TRIPLE WORD SCORE"]
+      R9:  [B, B, LB: "DOUBLE LETTER SCORE", B, B, B, LB: "DOUBLE LETTER SCORE", B, LB: "DOUBLE LETTER SCORE", B, B, B, LB: "DOUBLE LETTER SCORE", B, B]
+      R10: [B, DB: "TRIPLE LETTER SCORE", B, B, B, DB: "TRIPLE LETTER SCORE", B, B, B, DB: "TRIPLE LETTER SCORE", B, B, B, DB: "TRIPLE LETTER SCORE", B]
+      R11: [B, B, B, B, P: "DOUBLE WORD SCORE", B, B, B, B, B, P: "DOUBLE WORD SCORE", B, B, B, B]
+      R12: [LB: "DOUBLE LETTER SCORE", B, B, P: "DOUBLE WORD SCORE", B, B, B, LB: "DOUBLE LETTER SCORE", B, B, B, P: "DOUBLE WORD SCORE", B, B, LB: "DOUBLE LETTER SCORE"]
+      R13: [B, B, P: "DOUBLE WORD SCORE", B, B, B, LB: "DOUBLE LETTER SCORE", B, LB: "DOUBLE LETTER SCORE", B, B, B, P: "DOUBLE WORD SCORE", B, B]
+      R14: [B, P: "DOUBLE WORD SCORE", B, B, B, DB: "TRIPLE LETTER SCORE", B, B, B, DB: "TRIPLE LETTER SCORE", B, B, B, P: "DOUBLE WORD SCORE", B]
+      R15: [R: "TRIPLE WORD SCORE", B, B, LB: "DOUBLE LETTER SCORE", B, B, B, R: "TRIPLE WORD SCORE", B, B, B, LB: "DOUBLE LETTER SCORE", B, B, R: "TRIPLE WORD SCORE"]
+  uncovered_square_counts:
+    red: 8
+    pink: 17
+    dark_blue: 12
+    light_blue: 24
+    beige: 164
+
+tiles:
+  total_tiles: 100
+  distribution_schema:
+    - A: 9 tiles, 1 point each
+    - B: 2 tiles, 3 points each
+    - C: 2 tiles, 3 points each
+    - D: 4 tiles, 2 points each
+    - E: 12 tiles, 1 point each
+    - F: 2 tiles, 4 points each
+    - G: 3 tiles, 2 points each
+    - H: 2 tiles, 4 points each
+    - I: 9 tiles, 1 point each
+    - J: 1 tile, 8 points
+    - K: 1 tile, 5 points
+    - L: 4 tiles, 1 point each
+    - M: 2 tiles, 3 points each
+    - N: 6 tiles, 1 point each
+    - O: 8 tiles, 1 point each
+    - P: 2 tiles, 3 points each
+    - Q: 1 tile, 10 points
+    - R: 6 tiles, 1 point each
+    - S: 4 tiles, 1 point each
+    - T: 6 tiles, 1 point each
+    - U: 4 tiles, 1 point each
+    - V: 2 tiles, 4 points each
+    - W: 2 tiles, 4 points each
+    - X: 1 tile, 8 points
+    - Y: 2 tiles, 4 points each
+    - Z: 1 tile, 10 points
+    - Blank: 2 tiles, 0 points, used as valid letters
+  material: "wooden, light maple finish with beveled edges"
+  dimensions: "approximately 19mm x 19mm face, 4mm thickness; consistent and uniform"
+  typography:
+    font: "Century Schoolbook Bold (traditional Scrabble font)"
+    letter_color: "black ink"
+    point_value_position: "always southeast (lower right corner) of the letter, except blank tiles"
+    point_value_style: "smaller numeral, same Century Schoolbook Bold font"
+  placement_rules:
+    - "All 100 tiles placed on the board"
+    - "Tiles form valid English words only"
+    - "Words aligned horizontally or vertically, never diagonally"
+    - "Words intersect at shared letters per Scrabble rules"
+    - "Two blank tiles used correctly (no printed letter, no numeral)"
+    - "No tile overlaps or misalignment; each tile centered in its square"
+
+game_state:
+  description: "Board after conclusion of play, every tile used"
+  uncovered_squares: 125
+  covered_squares: 100
+  visual_legibility: "All words readable, letters crisp, no overlaps"
+  center_star_usage: "At least one word passes through the center (P*), per opening rule"
+
+composition:
+  vantage_point: "strict top-down orthographic view"
+  focal_point: "entire board, evenly distributed"
+  lighting:
+    type: "soft diffused overhead"
+    highlights: "gentle specular reflections on varnished wood"
+    shadows: "subtle, consistent cast shadows indicating uniform tile thickness"
+  color_management:
+    palette_accuracy: "true-to-life Scrabble board colors"
+    white_balance: "neutral (approximately 5600K)"
+    contrast: "moderate; preserve highlight detail and black legibility"
+
+style:
+  aesthetic: ["photorealism", "architectural precision", "editorial clarity"]
+  resolution: "8k ultra-detailed"
+  aspect_ratio: "1:1"
+  render_quality: "ultra-detailed, high fidelity, crisp edges, legible microtype"
+  postprocessing: ["mild sharpening", "no haloing", "no compression artifacts"]
+
+metadata:
+  context:
+    challenge_name: "Muth Test"
+    origin: "Proposed by Karl Muth, University of Chicago"
+    date: "December 2025"
+    purpose: "Benchmark for generative AI engines to render complex, rule-bound, legible board states"
+    difficulty: "High — requires geometry, combinatorics, linguistics, typography, and photorealism"
+    audience: "Advanced graduate-level AI contest evaluators"
+  success_criteria:
+    squares_and_colors: "Exactly 225 squares; uncovered squares: 8 Red, 17 Pink, 12 Dark Blue, 24 Light Blue, 164 Beige"
+    tile_usage: "All 100 tiles placed per distribution schema"
+    legality: "Only valid English words; Scrabble rules respected; no diagonals; legal blank usage"
+    typography: "Century Schoolbook Bold letters; numerals in same font; numerals in southeast corner except blanks"
+    special_labels: "All non-beige squares bear legible, correct notation"
+    perspective: "Strict orthographic straight-down view"
+    legibility: "Words and numerals crisp and readable at native resolution"
+  engine_guidance:
+    reproducibility: "Use fixed seed and guidance scale"
+    seed: 20251213
+    steps: 60
+    guidance_scale: 8.0
+    anti_artifacts: "Avoid lens distortion, chromatic aberration, text warping"
+    grid_alignment: "Maintain pixel-perfect vertical and horizontal grid lines"
+
+constraints_negative:
+  avoid:
+    - "misaligned grid"
+    - "incorrect tile counts"
+    - "non-English words"
+    - "diagonal words"
+    - "missing point values"
+    - "duplicate letters beyond Scrabble distribution"
+    - "special squares without legible notation"
+    - "wrong font usage"
+    - "oblique or tilted perspective"
+    - "overlapping tiles or off-center placement"
+
+# ---------------------------
+# Recursive validation routine
+# ---------------------------
+validation_routine:
+  name: "Ten-step recursive compliance checks"
+  description: "Iteratively verify geometry, color counts, tile schema, legality, typography, and perspective; fix and re-render if any check fails."
+  max_iterations: 3
+  checks:
+    - id: 1
+      label: "Grid cardinality"
+      rule: "Verify 15 x 15 grid; total_squares == 225."
+      fail_action: "Re-render with stricter grid snapping; enforce equal square dimensions."
+    - id: 2
+      label: "Color geography counts"
+      rule: "Count uncovered non-beige squares by color: Red=8, Pink=17, DarkBlue=12, LightBlue=24; Beige=164."
+      fail_action: "Recolor to match canonical map; lock rows R1–R15 to specified geography."
+    - id: 3
+      label: "Special square notation legibility"
+      rule: "All R/P/DB/LB squares must display correct text: TRIPLE WORD SCORE, DOUBLE WORD SCORE, TRIPLE LETTER SCORE, DOUBLE LETTER SCORE; text readable at 100% zoom."
+      fail_action: "Increase text contrast/size slightly; ensure font anti-aliasing; preserve exact wording."
+    - id: 4
+      label: "Tile distribution integrity"
+      rule: "Count tiles by letter vs. schema (A9, B2, C2, D4, E12, F2, G3, H2, I9, J1, K1, L4, M2, N6, O8, P2, Q1, R6, S4, T6, U4, V2, W2, X1, Y2, Z1, Blank2)."
+      fail_action: "Replace excess/deficit letters with correct tiles; maintain total_tiles == 100."
+    - id: 5
+      label: "Point value placement"
+      rule: "Every non-blank tile shows correct numeral in southeast (lower-right) corner; blanks show no numeral."
+      fail_action: "Move numerals to southeast corner; remove any numerals from blank tiles."
+    - id: 6
+      label: "Word legality and orientation"
+      rule: "All words are valid English; orientation strictly horizontal or vertical; no diagonals; words connect via shared letters."
+      fail_action: "Replace invalid strings with legal words; adjust placement to maintain connectivity."
+    - id: 7
+      label: "Center star compliance"
+      rule: "At least one word passes through the center P* square."
+      fail_action: "Route a legal word through center while preserving other constraints."
+    - id: 8
+      label: "Orthographic perspective lock"
+      rule: "Camera is strict top-down; zero tilt, zero parallax; grid lines parallel to image edges."
+      fail_action: "Reset camera to orthographic; align board edges to frame axes."
+    - id: 9
+      label: "Typography fidelity"
+      rule: "Letters and numerals rendered in Century Schoolbook Bold; consistent kerning; high legibility."
+      fail_action: "Switch to Century Schoolbook Bold; adjust size/kerning; re-render microtype."
+    - id: 10
+      label: "Tile placement discipline"
+      rule: "Each tile centered in its square; no overlaps; uniform spacing; consistent shadows indicating equal thickness."
+      fail_action: "Re-center tiles; normalize shadow direction and intensity."
+  recursion:
+    process: "Run checks 1–10; if any fail, apply fail_action(s), re-render, and re-run checks; stop when all pass or max_iterations reached."
+    success_criteria: "All checks pass simultaneously; image exported at specified resolution and aspect ratio."
