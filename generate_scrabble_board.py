@@ -72,26 +72,21 @@ TWO_LETTER = {
 # ============================================================
 
 def load_word_list(max_len=10):
-    """Load filtered word list. Limit length for realistic board."""
+    """Load word list from TWL06 (official North American Scrabble dictionary)."""
     words = set(TWO_LETTER)
-    path = '/usr/share/dict/words'
-    if os.path.exists(path):
-        with open(path) as f:
+    # Use TWL06 dictionary (Tournament Word List, North American Scrabble)
+    twl_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'twl06.txt')
+    if os.path.exists(twl_path):
+        with open(twl_path) as f:
             for line in f:
-                w = line.strip()
-                if 2 <= len(w) <= max_len and w.isalpha() and w == w.lower():
-                    words.add(w.upper())
-    # Add important Scrabble words
-    for w in ['QI','ZA','QIS','OX','AX','EX','XI','JO','KA','KI',
-              'JINX','JINXED','QUIZ','QUIZZED','WAXED','FOXED','BOXED',
-              'TAXI','TAXIED','FIXED','VEXED','MIXED','FOXES',
-              'FROZEN','GRAVED','BEHALF','SPOKEN','COWING',
-              'JOKING','JOKED','JAZZY','FIZZY','FUZZY','PRIZE','PRIZED',
-              'QUIVER','QUAKE','QUIRKY','EQUITY','OPAQUE',
-              'OXYGEN','BOXING','TAXING','FAWNED','VIEWING',
-              'ADJECTIVE','REJOIN','JOINED','JOYFUL']:
-        if len(w) <= max_len:
-            words.add(w.upper())
+                w = line.strip().upper()
+                if 2 <= len(w) <= max_len and w.isalpha():
+                    words.add(w)
+    else:
+        raise FileNotFoundError(
+            f"TWL06 dictionary not found at {twl_path}. "
+            "Please ensure twl06.txt is in the same directory as this script."
+        )
     return words
 
 
